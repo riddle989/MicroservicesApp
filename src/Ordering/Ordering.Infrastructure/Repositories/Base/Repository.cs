@@ -13,7 +13,7 @@ namespace Ordering.Infrastructure.Repositories.Base
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        private readonly OrderContext _dbContext;
+        protected readonly OrderContext _dbContext;
 
         public Repository(OrderContext dbContext)
         {
