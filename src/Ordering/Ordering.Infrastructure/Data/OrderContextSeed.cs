@@ -17,6 +17,7 @@ namespace Ordering.Infrastructure.Data
 
             try
             {
+                //Causing error for existing Database
                 orderContext.Database.Migrate();
 
                 if (!orderContext.Orders.Any())
