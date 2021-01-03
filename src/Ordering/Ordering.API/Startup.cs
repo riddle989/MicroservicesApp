@@ -46,17 +46,15 @@ namespace Ordering.API
                 c.UseSqlServer(connectionString), ServiceLifetime.Singleton
             );
 
-            services.AddAutoMapper(typeof(Startup));
-
-            services.AddMediatR(typeof(CheckoutOrderHandler).GetTypeInfo().Assembly);
-
-            services.AddTransient<IOrderRepository, OrderRepository>();
-
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
 
-            services.AddSingleton<EventBusRabbitMQConsumer>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddMediatR(typeof(CheckoutOrderHandler).GetTypeInfo().Assembly);
 
             services.AddSingleton<IRabbitMQConnection>(sp =>
             {
@@ -74,6 +72,8 @@ namespace Ordering.API
                 }
                 return new RabbitMQConnection(factory);
             });
+
+            services.AddSingleton<EventBusRabbitMQConsumer>();
 
             services.AddSwaggerGen(c =>
             {
