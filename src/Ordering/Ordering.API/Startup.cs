@@ -64,7 +64,7 @@ namespace Ordering.API
                 };
                 if (!string.IsNullOrEmpty(Configuration["EventBus:UserName"]))
                 {
-                    factory.Password = Configuration["EventBus:UserName"];
+                    factory.UserName = Configuration["EventBus:UserName"];
                 }
                 if (!string.IsNullOrEmpty(Configuration["EventBus:Password"]))
                 {
