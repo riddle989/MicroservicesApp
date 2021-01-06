@@ -23,6 +23,14 @@ namespace EventBusRabbitMQ
             }
         }
 
+        public bool IsConnected
+        {
+            get
+            {
+                return _connection != null && _connection.IsOpen && !_disposed;
+            }
+        }
+
         public bool TryConnect()
         {
             try
@@ -37,14 +45,13 @@ namespace EventBusRabbitMQ
                 // This is used to create a connection using the given configuraion
                 _connection = _connectionFactory.CreateConnection();
             }
-            return IsConnected;
-        }
-
-        public bool IsConnected
-        {
-            get
+            if (IsConnected)
             {
-                return _connection != null && _connection.IsOpen && !_disposed;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -68,7 +75,6 @@ namespace EventBusRabbitMQ
             }
             try
             {
-                _disposed = true;
                 _connection.Dispose();
             }
             catch (Exception)
