@@ -6,6 +6,7 @@ namespace EventBusRabbitMQ.Events
 {
     public class BasketCheckoutEvent
     {
+        // We are using this id to track the order
         public Guid RequestId { get; set; }
 
         public string UserName { get; set; }
