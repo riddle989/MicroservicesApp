@@ -20,6 +20,11 @@ namespace Basket.API.Entities
             UserName = userName;
         }
 
+
+        // The main benifit of this approach is that
+        // we dont have to create method to get the price
+        // when this variable is called, it will be set automatically
+        // and return it
         public decimal TotalPrice 
         { 
             get
